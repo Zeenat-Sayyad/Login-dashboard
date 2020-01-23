@@ -1,0 +1,98 @@
+<html>
+    <body>
+        <div class="logout">
+   <button class="btn float-right login_btn" (click)="goToPage('login')">Logout</button>
+     
+     
+        </div>
+        <router-outlet></router-outlet>
+        <div class="container">
+           
+            <br>
+            <br>
+            <div class="card">
+            <form #contactForm="ngForm" (ngSubmit)="log(contactForm)" >
+
+                <div class="form-group">
+                    <label for="firstname">First Name</label>
+                    <input type="text"   name="firstname" ngModel
+                    #firstname="ngModel" required minlength="5" [(ngModel)]="fname" >
+                </div>
+            
+                <div class="form-group">
+                    <label for="lastname">Last Name</label>
+                    <input type="text"   name="lastname"
+                    ngModel #lastname="ngModel"  required [(ngModel)]="lname">
+                </div>
+                <div class="form-group">
+                    <label for="Mobile_No">Mobile no</label>
+                    <input type="number"   name="number"
+                    ngModel #number="ngModel"  required [(ngModel)]="num">
+                </div>
+                <div class="form-group">
+                    <label for="DOB">Date of birth</label>
+                    <input type="date"   name="date"
+                    ngModel #date="ngModel"  required [(ngModel)]="dob">
+                </div>
+                <div class="form-group" >
+                  <label for="CV" style="margin-left: 115px;">CV</label>
+                    <input type="file"   name="CV"
+                    ngModel #CV="ngModel"  required style="color:white;" [(ngModel)]="cv">
+                </div>
+                <div class="Photo">
+                    <label for="Photo" style="margin-left: 85px;" >     Photo</label>
+                    <input type="file"  accept="image/*" name="image"
+                    ngModel #image="ngModel"  required style="color:white;"  [(ngModel)]="photo">
+                </div>
+                <div class="form-group">
+                    <button type="submit" [disabled]="!contactForm.valid" class="login_btn" style="margin-top: 20px;border: 2px solid orange;" (click)="clear()">Submit</button>
+                </div>
+            
+                <div style="color:red ;font-style: italic;"
+    *ngIf="!firstname?.valid && (firstname?.dirty ||firstname?.touched)"
+    class="alert alert-danger" >
+        <div [hidden]="!firstname.errors.required">
+            First Name is required
+        </div>
+        <div [hidden]="!firstname.errors.minlength">
+            First Name Minimum Length is    {{firstname.errors.minlength?.requiredLength}}
+        </div>
+    </div>
+    <div style="color:red ;font-style: italic;"
+    *ngIf="!lastname?.valid && (lastname?.dirty ||lastname?.touched)"
+    class="alert alert-danger">
+        <div [hidden]="!lastname.errors.required">
+            Last Name is required
+        </div>
+        <div [hidden]="!lastname.errors.minlength">
+            lastname Minimum Length is    {{lastname.errors.minlength?.requiredLength}}
+        </div>
+    </div>
+    <div style="color:red ;font-style: italic;"
+    *ngIf="!number?.valid && (number?.dirty ||number?.touched)"
+    class="alert alert-danger">
+        <div [hidden]="!number.errors.required">
+            Mobile number is required
+        </div>
+       
+    </div>
+    <div style="color:red ;font-style: italic;"
+    *ngIf="!CV?.valid && (CV?.dirty ||CV?.touched)"
+    class="alert alert-danger">
+        <div [hidden]="!CV.errors.required">
+            CV is required
+        </div>
+    </div>
+       
+    
+   
+    
+    </form>
+                
+    </div>
+        </div>
+
+    </body>
+</html>
+<!-- first name, last name, mobile number, date of birth date selector, cv upload, photo upload and submit button with working format.
+And on the right most top there will be a logout button. -->
